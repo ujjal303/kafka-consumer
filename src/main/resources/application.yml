@@ -1,0 +1,30 @@
+#going to use java based config instead of using application yml based config
+#spring:
+#  kafka:
+#    consumer:
+#      bootstrap-servers: localhost:9092
+#      group-id: customer-group
+#      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+#      properties:
+#        spring:
+#          json:
+#            value:
+#              default:
+#                type: com.ujjal.kafka.models.CustomerDetail
+#            trusted:
+#              packages: "com.ujjal.kafka.models"
+#        key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#        value.deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+spring:
+  kafka:
+    consumer:
+      auto-offset-reset: latest  # Start from the latest message if no offset is present
+      enable-auto-commit: false   # Disable auto-commit for precise control
+    retry:
+      max-attempts: 4
+
+
+
+server:
+  port: 9393

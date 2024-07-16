@@ -43,13 +43,14 @@ public class KafkaMessageListener {
 //        }
 
     }
-@KafkaListener(topics = EMPLOYEE_TOPIC,groupId = EMPLOYEE_GROUP)
-    public void consumeEmployee(ConsumerRecord<String,Employee> employeeRecord) {
-    Optional<ConsumerRecord<String, Employee>> employeeRecord1 = Optional.ofNullable(employeeRecord);
 
-    String key= employeeRecord1.flatMap(record -> Optional.ofNullable(record.key())).orElseThrow(RuntimeException::new);
-    Employee employee=employeeRecord1.flatMap(record-> Optional.ofNullable(record.value())).orElseThrow(RuntimeException::new);
-    log.info("Avro message Received for key: {}, value: {}", key, employee.toString());
+    @KafkaListener(topics = EMPLOYEE_TOPIC, groupId = EMPLOYEE_GROUP)
+    public void consumeEmployee(ConsumerRecord<String, Employee> employeeRecord) {
+        Optional<ConsumerRecord<String, Employee>> employeeRecord1 = Optional.ofNullable(employeeRecord);
+
+        String key = employeeRecord1.flatMap(record -> Optional.ofNullable(record.key())).orElseThrow(RuntimeException::new);
+        Employee employee = employeeRecord1.flatMap(record -> Optional.ofNullable(record.value())).orElseThrow(RuntimeException::new);
+        log.info("Avro message Received for key: {}, value: {}", key, employee.toString());
 
     }
 
